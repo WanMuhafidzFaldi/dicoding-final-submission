@@ -1,6 +1,6 @@
 const AppServer = require('./src/route/server');
 const appServer = new AppServer();
-const port = 9000;
+const port = 3000;
 
 appServer.server.listen(port, () => {
     const ctx = 'app-listen';
