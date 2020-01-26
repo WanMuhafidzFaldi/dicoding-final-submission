@@ -1,0 +1,46 @@
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>CORS EXAMPLE</title>
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h1>Dicoding Final Submission</h1>
+    <p>Azure Cloud Developer</p>
+</div>
+
+<div class="container-md">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Upload File Images</h3>
+            <form method="post" enctype="multipart/form-data">
+              <input class="form-control-file border" type="file" name="uploadFile" id="uploadFile"> <br>
+              <button type="button" class="btn btn-primary btnUpload" name="btnUpload" id="btnUpload">Upload File</button>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <h3>Column 2</h3>
+            <p>Lorem ipsum dolor..</p>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    $("button").click(function () {
+        $.get("https://catalog-api-dev.telkomdigitalsolution.co/api/catalog/health-check", function (data, status) {
+            alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        });
+    });
+</script>
+</html>
