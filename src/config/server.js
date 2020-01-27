@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
         cb(null, './tmp')
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
+        const extFile = file.originalname.split(".")[1];
+        cb(null, `${file.fieldname}-${Date.now()}.${extFile}`)
     }
 })
 
@@ -17,9 +18,9 @@ const upload = multer({ storage: storage })
 
 function AppServer() {
     this.server = express();
-    this.server.post('/azure', upload.single('file'), handler.uploadFileAzure);
+    this.server.post('/azure', upload.single('uploadFile'), handler.uploadFileAzure);
     this.server.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname+'/../views/index.html'))
+        res.sendFile(path.join(__dirname+'/../views/index.html'));
     });
 }
 

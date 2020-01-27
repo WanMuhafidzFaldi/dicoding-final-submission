@@ -1,8 +1,8 @@
 const data = (data) => ({ err: null, data});
 
-const error = (err, data) => ({ err, data: data ? data : null });
+const error = (err, data, code) => ({ err, data: data ? data : null, code: code });
 
-const response = (res, type, result, message = '', code = 200) => {
+const response = (res, type, result, message = '', code) => {
   let status = true;
   let data = result.data;
   if(type === 'fail'){

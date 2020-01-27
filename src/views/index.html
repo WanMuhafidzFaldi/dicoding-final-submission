@@ -14,33 +14,67 @@
     <title>CORS EXAMPLE</title>
 </head>
 <body>
-<div class="jumbotron text-center">
-    <h1>Dicoding Final Submission</h1>
-    <p>Azure Cloud Developer</p>
-</div>
-
-<div class="container-md">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col col-sm-12">
+            <div class="jumbotron text-center">
+                <h1>Dicoding Final Submission</h1>
+                <p>Azure Cloud Developer</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-3 col-md-3">
             <h3>Upload File Images</h3>
-            <form method="post" enctype="multipart/form-data">
-              <input class="form-control-file border" type="file" name="uploadFile" id="uploadFile"> <br>
-              <button type="button" class="btn btn-primary btnUpload" name="btnUpload" id="btnUpload">Upload File</button>
+            <form id="form" action="" method="post" enctype="multipart/form-data">
+                <input class="form-control-file border" type="file" accept="image/*" name="uploadFile" id="uploadFile">
+                <br>
+                <button type="submit" class="btn btn-primary btnUpload" name="btnUpload" id="btnUpload">Upload
+                    File
+                </button>
             </form>
         </div>
-        <div class="col-md-9">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor..</p>
+        <div class="col col-sm-9 col-md-9">
+            <table id="table" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Images</th>
+                    <th scope="col">File Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 </body>
 
 <script>
-    $("button").click(function () {
-        $.get("https://catalog-api-dev.telkomdigitalsolution.co/api/catalog/health-check", function (data, status) {
-            alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-        });
+    const url = "https://dicoding-final-submission.azurewebsites.net"
+    $(document).ready(function (e) {
+        $("#form").on('submit', (function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: `${url}/azure`,
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $("#uploadFile").val("")
+                    alert(data.message)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        }));
     });
 </script>
 </html>
